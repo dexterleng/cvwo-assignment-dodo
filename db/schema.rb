@@ -20,12 +20,10 @@ ActiveRecord::Schema.define(version: 2018_12_09_151935) do
   end
 
   create_table "tags_tasks", id: false, force: :cascade do |t|
-    t.integer "task_id", null: false
-    t.integer "tag_id", null: false
-    t.integer "tasks_id"
-    t.integer "tags_id"
-    t.index ["tags_id"], name: "index_tags_tasks_on_tags_id"
-    t.index ["tasks_id"], name: "index_tags_tasks_on_tasks_id"
+    t.integer "task_id"
+    t.integer "tag_id"
+    t.index ["tag_id"], name: "index_tags_tasks_on_tag_id"
+    t.index ["task_id"], name: "index_tags_tasks_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
