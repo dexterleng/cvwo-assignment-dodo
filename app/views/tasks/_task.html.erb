@@ -1,4 +1,12 @@
-<h2><%= task.title %></h2>
-<% task.tags.each do |tag| %>
-  <p><%= tag.name %></p>
-<% end %>
+<tr>
+  <th><%= task.title %></th>
+  <td>
+    <ul>
+      <% task.tags.each do |tag| %>
+        <li>
+          <p><%= tag.name %></p>
+        </li>
+      <% end %>
+    </ul>
+  </td>
+</tr>

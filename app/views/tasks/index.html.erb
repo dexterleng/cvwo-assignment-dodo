@@ -1,5 +1,13 @@
 <h1>Tasks</h1>
 
-<% @tasks.each do |task| %>
-  <%= render partial: 'task', locals: { task: task } %>
-<% end %>
+<table class="table">
+  <thead>
+    <th scope="col">Task Title</th>
+    <th scope="col">Tags</th>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <%= render partial: 'task', locals: { task: task } %>
+    <% end %>
+  </tbody>
+</table>
