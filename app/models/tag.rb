@@ -1,6 +1,7 @@
 class Tag < ApplicationRecord
   has_and_belongs_to_many :tasks
   before_save :downcase_fields
+  validates :name, presence: true, allow_blank: false
 
   def existing_tag
     Tag.find_by(name: name.downcase)

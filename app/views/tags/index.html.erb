@@ -1,0 +1,5 @@
+<h1>Tags</h1>
+
+<% @tags.each do |tag| %>
+  <%= render partial: 'tag', locals: { tag: tag } %>
+<% end %>
