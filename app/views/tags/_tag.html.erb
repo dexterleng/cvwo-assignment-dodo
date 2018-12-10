@@ -1,4 +1,12 @@
-<h2><%= tag.name %></h2>
-<% tag.tasks.each do |task| %>
-  <p><%= task.title %></p>
-<% end %>
+<tr>
+  <th><%= tag.name %></th>
+  <td>
+    <ul>
+      <% tag.tasks.each do |task| %>
+        <li>
+          <a href="/tasks/<%= task.id %>/edit"><%= task.title %></a>
+        </li>
+      <% end %>
+    </ul>
+  </td>
+</tr>
