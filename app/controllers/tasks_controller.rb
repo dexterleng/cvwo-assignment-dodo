@@ -22,14 +22,16 @@ class TasksController < ApplicationController
         tags_params_hash.values.each do |tag_hash|
           tag = Tag.new(tag_hash)
           tag = tag.save_if_not_exists
-          @task.tags.delete_all!
+          @task.tags.delete_all
           # avoid pushing if it was not saved or already in db.
           # occurs when tag.name is empty
           @task.tags << tag if tag.valid?
         end
+        flash["success"] = "Task updated"
         redirect_to tasks_path
       end
     rescue Exception => exception
+      puts exception
       render :edit
     end
   end
@@ -47,6 +49,7 @@ class TasksController < ApplicationController
           # occurs when tag.name is empty
           @task.tags << tag if tag.valid?
         end
+        flash[:success] = "Task created"
         redirect_to tasks_path
       end
     rescue Exception => exception
@@ -54,8 +57,10 @@ class TasksController < ApplicationController
     end
   end
 
-  def add_tag
-    @task.tags.build()
+  def destroy
+    Task.find(params[:id]).destroy
+    flash[:success] = "Task deleted"
+    redirect_to tasks_path
   end
 
   private

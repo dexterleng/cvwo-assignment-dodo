@@ -13,5 +13,7 @@
     <button type="button" class="btn btn-primary">
       <a href="/tasks/<%= task.id %>/edit">Edit</a>
     </button>
+    <%= link_to "delete", task, method: :delete,
+      data: { confirm: "You sure?" }, class: "btn btn-danger" %>
   </td>
 </tr>
