@@ -66,3 +66,4 @@ gem 'jquery-rails'
 gem "dynamic_form"
 gem "cocoon"
 gem 'simple_form'
+gem 'bcrypt'
