@@ -10,6 +10,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   has_secure_password
+  
+  has_many :tasks, dependent: :destroy
 
   # Returns the hash digest of the given string.
   def User.digest(string)
