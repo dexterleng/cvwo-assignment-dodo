@@ -67,3 +67,5 @@ gem "dynamic_form"
 gem "cocoon"
 gem 'simple_form'
 gem 'bcrypt'
+gem 'bcrypt-ruby'
+gem 'rails-controller-testing'
