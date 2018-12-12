@@ -2,7 +2,7 @@
   <th><%= tag.name %></th>
   <td>
     <ul>
-      <% tag.tasks.each do |task| %>
+      <% tag.tasks.where(user: current_user).each do |task| %>
         <li>
           <a href="/tasks/<%= task.id %>/edit"><%= task.title %></a>
         </li>
