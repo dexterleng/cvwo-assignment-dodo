@@ -1,0 +1,4 @@
+yeet:
+  title: "YOTE"
+  created_at: <%= 10.minutes.ago %>
+  user: mister
