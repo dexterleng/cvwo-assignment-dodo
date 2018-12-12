@@ -1,4 +1,8 @@
-<div class='nested-fields form-group'>
-  <%= f.text_field :name, class: 'form-control' %>
-  <%= link_to_remove_association "remove tag", f %>
+<div class='nested-fields form-group tag-form row'>
+  <div class="col-xs-8">
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="col-xs-4">
+    <%= link_to_remove_association "remove tag", f, class: "btn btn-warning" %>
+  </div>
 </div>

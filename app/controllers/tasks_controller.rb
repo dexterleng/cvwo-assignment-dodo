@@ -8,7 +8,6 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @task.tags.build()
   end
 
   def edit

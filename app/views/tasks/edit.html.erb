@@ -1,18 +1,18 @@
-<h1>Create new task</h1>
+<h1>Edit task</h1>
 
 <%= simple_form_for @task do |f| %>
   <%= f.error_messages %>
   <%= f.label :title %>
   <%= f.text_field :title, class: 'form-control' %>
   
-  <h3>Tags</h3>
-  <div id='tags'>
+  <div id='tags' class="container">
+    <h3 class="d-inline-block">Tags</h3>
+    <div class='links'>
+      <%= link_to_add_association 'add tag', f, :tags, class: "btn btn-secondary float-right" %>
+    </div>
     <%= f.simple_fields_for :tags do |tag| %>
       <%= render 'tag_fields', :f => tag %>
     <% end %>
-    <div class='links'>
-      <%= link_to_add_association 'add tag', f, :tags %>
-    </div>
   </div>
-  <%= f.submit 'Save changes' %>
+  <%= f.submit 'Save', class: "btn btn-primary" %>
 <% end %>
