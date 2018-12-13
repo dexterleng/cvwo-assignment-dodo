@@ -6,8 +6,8 @@
     <th scope="col">Tasks</th>
   </thead>
   <tbody>
-    <% @tags.each do |tag| %>
-      <%= render partial: 'tag', locals: { tag: tag } %>
+    <% @tags_tasks.each do |tag_name, tasks| %>
+      <%= render partial: 'tag', locals: { tag_name: tag_name, tasks: tasks } %>
     <% end %>
   </tbody>
 </table>

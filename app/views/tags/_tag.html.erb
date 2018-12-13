@@ -1,8 +1,8 @@
 <tr>
-  <th><%= tag.name %></th>
+  <th><%= tag_name %></th>
   <td>
     <ul>
-      <% tag.tasks.where(user: current_user).each do |task| %>
+      <% tasks.each do |task| %>
         <li>
           <a href="/tasks/<%= task.id %>/edit"><%= task.title %></a>
         </li>
