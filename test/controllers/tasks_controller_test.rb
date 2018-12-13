@@ -34,4 +34,19 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     put task_path(@task)
     assert_redirected_to login_path
   end
+
+  test "should delete task if logged in" do
+    post login_path, params: { session: { email: @user.email, password: 'password' } }
+    delete task_path(@task)
+    assert_equal 0, Task.where(id: @task.id).count
+  end
+
+  test "cannot delete other user's task " do
+    user_two = users(:john)
+    task_user_two = tasks(:python)
+    user_two.tasks << task_user_two
+    post login_path, params: { session: { email: @user.email, password: 'password' } }
+    delete task_path(task_user_two)
+    assert_equal 1, Task.where(id: @task.id).count
+  end
 end

@@ -2,3 +2,7 @@ yeet:
   title: "YOTE"
   created_at: <%= 10.minutes.ago %>
   user: mister
+python:
+  title: "Python"
+  created_at: <%= 10.minutes.ago %>
+  user: john
