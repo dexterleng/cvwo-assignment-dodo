@@ -49,4 +49,24 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     delete task_path(task_user_two)
     assert_equal 1, Task.where(id: @task.id).count
   end
+
+  test "can create task if logged in" do
+    post login_path, params: { session: { email: @user.email, password: 'password' } }
+    post tasks_path, params: { task: { title: "CS3216" } }
+    assert_equal 1, Task.where(title: "CS3216").count
+  end
+
+  test "can create tasks with tags if logged in" do
+    assert_equal 0, Tag.where(name: "cs").count
+    post login_path, params: { session: { email: @user.email, password: 'password' } }
+    post tasks_path, params: {"task"=>{"title"=>"CS3216", "tags_attributes"=>{"0"=>{"name"=>"cs", "_destroy"=>"false"}}}}
+    assert_equal 1, Tag.where(name: "cs").count
+  end
+
+  test "does not create tag if tag with that name already exists"  do
+    assert_equal 1, Tag.where(name: "school").count
+    post login_path, params: { session: { email: @user.email, password: 'password' } }
+    post tasks_path, params: {"task"=>{"title"=>"CS3216", "tags_attributes"=>{"0"=>{"name"=>"school", "_destroy"=>"false"}}}}
+    assert_equal 1, Tag.where(name: "school").count
+  end
 end
