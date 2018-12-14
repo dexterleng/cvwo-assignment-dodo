@@ -25,16 +25,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-  test "should redirect edit when not logged in" do
-    get edit_task_path(@task)
-    assert_redirected_to login_path
-  end
-
-  test "should redirect update when not logged in" do
-    put task_path(@task)
-    assert_redirected_to login_path
-  end
-
   test "should delete task if logged in" do
     post login_path, params: { session: { email: @user.email, password: 'password' } }
     delete task_path(@task)
