@@ -27,6 +27,7 @@ class TasksController < ApplicationController
         redirect_to tasks_path
       end
     rescue Exception => exception
+      flash[:danger] = "Something went wrong."
       render :new
     end
   end
@@ -40,7 +41,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, tags_attributes: [:name, :id])
+    params.require(:task).permit(:title, :desc, tags_attributes: [:name, :id])
   end
 
   def split_task_tags_params

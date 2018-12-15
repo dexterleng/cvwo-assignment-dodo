@@ -10,6 +10,9 @@
     </ul>
   </td>
   <td>
+    <%= task.desc %>
+  </td>
+  <td>
     <%= link_to "Delete", task, method: :delete,
       data: { confirm: "You sure?" }, class: "btn btn-danger" %>
   </td>
