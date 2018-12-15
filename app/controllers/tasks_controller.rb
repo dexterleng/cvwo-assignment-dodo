@@ -51,6 +51,8 @@ class TasksController < ApplicationController
       ActiveRecord::Base.transaction do
         @task.save!
         tags_params_hash.values.each do |tag_hash|
+          tag_hash.delete(:_destroy)
+          tag_hash.delete(:id)
           tag = Tag.new(tag_hash)
           tag = tag.save_if_not_exists
           # avoid pushing if it was not saved or already in db.
@@ -61,6 +63,7 @@ class TasksController < ApplicationController
         redirect_to tasks_path
       end
     rescue Exception => exception
+      puts exception
       flash[:danger] = "Something went wrong."
       render :new
     end
