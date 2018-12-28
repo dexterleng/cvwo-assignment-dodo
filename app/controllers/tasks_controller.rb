@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :update, :edit, :index]
-  before_action :correct_user_single_task,   only: [:destroy, :edit]
+  before_action :logged_in_user, only: [:create, :destroy, :update, :edit, :index, :done, :undone]
+  before_action :correct_user_single_task,   only: [:destroy, :edit, :done, :undone]
 
   def index
     @tasks = current_user.tasks
@@ -75,6 +75,18 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  def done
+    @task.update_attributes!(done: true)
+    flash[:success] = "Task marked as done."
+    redirect_to tasks_path
+  end
+
+  def undone
+    @task.update_attributes!(done: false)
+    flash[:success] = "Task marked as undone."
+    redirect_to tasks_path
+  end
+
   private
 
   def task_params
@@ -97,6 +109,8 @@ class TasksController < ApplicationController
   end
 
   def correct_user_single_task
+    puts "YEET"
+    puts params[:id]
     @task = current_user.tasks.find_by(id: params[:id])
     if @task.nil?
       redirect_to root_path

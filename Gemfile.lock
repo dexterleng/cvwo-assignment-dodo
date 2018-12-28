@@ -86,6 +86,8 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.1)
@@ -225,6 +227,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.2)
   dynamic_form
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
@@ -247,4 +250,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.17.1
+   1.17.2

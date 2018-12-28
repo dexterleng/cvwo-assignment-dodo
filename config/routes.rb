@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :tasks
+  resources :tasks do
+    post :done, on: :member
+    post :undone, on: :member
+  end
+
   resources :tags
   resources :users
   get  '/signup',  to: 'users#new'
