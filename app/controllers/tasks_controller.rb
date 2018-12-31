@@ -3,7 +3,12 @@ class TasksController < ApplicationController
   before_action :correct_user_single_task,   only: [:destroy, :edit, :done, :undone]
 
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.includes(:tags)
+    # because eager loaded nested attributes do not show up in React.
+    @tasks_json = @tasks.map{ |task| task.as_json.merge({
+      tags: task.tags.as_json
+    })}
+    @tags = get_tags_from_tasks(@tasks)
   end
 
   def new
@@ -109,12 +114,20 @@ class TasksController < ApplicationController
   end
 
   def correct_user_single_task
-    puts "YEET"
-    puts params[:id]
     @task = current_user.tasks.find_by(id: params[:id])
     if @task.nil?
       redirect_to root_path
       flash[:danger] = 'Not permitted because of incorrect user.'
     end
+  end
+
+  def get_tags_from_tasks(tasks)
+    tags_hash = {}
+    tasks.each do |task|
+      task.tags.each do |tag|
+        tags_hash[tag.name] = true
+      end
+    end
+    tags_hash.keys
   end
 end

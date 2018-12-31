@@ -75,3 +75,5 @@ gem 'simple_form'
 gem 'bcrypt'
 gem 'rails-controller-testing'
 gem "font-awesome-rails"
+gem 'webpacker'
+gem 'react-rails'

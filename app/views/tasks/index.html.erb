@@ -3,16 +3,7 @@
   <%= link_to 'New Task', new_task_path, class: "btn btn-primary float-right" %>
 </div>
 
-<table class="table table-striped table-responsive-md">
-  <thead>
-    <th scope="col">Task Title</th>
-    <th scope="col">Tags</th>
-    <th scope="col">Description</th>
-    <th scope="col">Actions</th>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <%= render partial: 'task', locals: { task: task } %>
-    <% end %>
-  </tbody>
-</table>
+<%= react_component("TaskIndex", {
+  tasks: @tasks_json,
+  current_user: current_user
+}) %>
