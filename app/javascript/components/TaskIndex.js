@@ -25,23 +25,24 @@ class TaskIndex extends React.Component {
     const taskFilter = this.state.highlighted === false ? (x) => true : (task) => task.tags.some(tag => tag.name === this.state.highlighted);
     const tasks = this.state.tasks.filter(taskFilter);
     return (
-      <React.Fragment>
-        <div>
-          <ul>
-            <li>
-              <FilterButton onClick={() => this.handleTagFilter(false)} highlighted={this.state.highlighted} id={false}>Show All</FilterButton>
-            </li>
-            {
-              this.state.tags.map((tag) => (
-                <li key={tag}>
-                  <FilterButton onClick={() => this.handleTagFilter(tag)} highlighted={this.state.highlighted} id={tag}>{tag}</FilterButton>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12 col-md-3">
+            <ul>
+              <li>
+                <FilterButton onClick={() => this.handleTagFilter(false)} highlighted={this.state.highlighted} id={false}>Show All</FilterButton>
+              </li>
+              {
+                this.state.tags.map((tag) => (
+                  <li key={tag}>
+                    <FilterButton onClick={() => this.handleTagFilter(tag)} highlighted={this.state.highlighted} id={tag}>{tag}</FilterButton>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
 
-        <div>
+          <div className="col-sm-12 col-md-9">
           <table className="table table-striped table-responsive-md">
             <thead>
               <tr>
@@ -61,7 +62,8 @@ class TaskIndex extends React.Component {
           </table>
 
         </div>
-      </React.Fragment>
+        </div>
+      </div>
     );
   }
 }
